@@ -1,0 +1,28 @@
+import { useContext } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { TodoContext } from '../context/TodoContext';
+import TodoCard from '../components/TodoCard';
+
+const Note = () => {
+  const todos = useContext(TodoContext).todos;
+  return (
+  <Container>
+    <h1 className="my-3">Your todos</h1>
+    <Row>
+      <CardGroup todos={todos}/>
+    </Row>
+  </Container>
+  )
+}
+
+const CardGroup = ({ todos }) => {
+  return todos.map((todo) => {
+    return (
+    <Col md={4} key={todo.id}>
+      <TodoCard todo={todo} />
+    </Col>
+    );
+  });
+}
+
+export default Note
