@@ -69,7 +69,7 @@ const TodoCard = ({ todo }) => {
           <Modal.Header closeButton>
             <Modal.Title>Delete Todo</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Are you sure to delet this to do note?</Modal.Body>
+          <Modal.Body>Are you sure to delete this to do note?</Modal.Body>
           <Modal.Footer>
             <Button variant='primary' onClick={hideBox}>Cancel</Button>
             <Button variant='danger' onClick={deleteTodo}>Delete</Button>
