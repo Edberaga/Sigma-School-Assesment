@@ -7,3 +7,11 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 }
+
+p {
+  margin: 0;
+}
+
+button {
+  border: 0 solid transparent;
+}
