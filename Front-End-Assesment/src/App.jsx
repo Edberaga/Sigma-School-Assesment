@@ -26,6 +26,9 @@ function App() {
   useEffect(() => {
     if (isLoggedIn) {
       localStorage.setItem("isLoggedIn", isLoggedIn);
+    } else {
+      localStorage.removeItem("isLoggedIn");
+      
     }
   }, [isLoggedIn]);
 
