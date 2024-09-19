@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Card, Button, Modal } from 'react-bootstrap';
 import { TodoContext } from '../context/TodoContext';
+import { toast } from 'react-toastify';
 
 const TodoCard = ({ todo }) => {
   const completed = todo.completed;
@@ -33,6 +34,7 @@ const TodoCard = ({ todo }) => {
     setTodos((prevTodo) => 
       prevTodo.filter((prevTodo) => prevTodo.id !== todo.id)
     );
+    toast.success("Note has been deleted successfully");
   }
 
   const pauseTimer = () => {
@@ -45,7 +47,7 @@ const TodoCard = ({ todo }) => {
       <Card.Header>{!completed && "Not "}Completed</Card.Header>
       <Card.Body>
         <Card.Title>{todo.title}</Card.Title>
-        <Card.Text>{todo.description}</Card.Text>
+        <Card.Text className='py-2'>{todo.description}</Card.Text>
         <p>Timer: {timer} seconds</p>
         <Button variant={(timerInterval) ? 'success' : 'primary'} onClick={startTimer}>
           <i className='bi bi-play' />
@@ -56,7 +58,7 @@ const TodoCard = ({ todo }) => {
         <Button onClick={resetTimer} className='ms-2'>
           <i className="bi bi-arrow-clockwise"></i>
         </Button>
-        <Button variant='secondary' href={`todo/${todo.id}`} className='ms-2'>
+        <Button variant='secondary' href={`note/todo/${todo.id}`} className='ms-2'>
           <i className="bi bi-pencil"></i>
         </Button>
         <Button variant='danger' onClick={showBox} className='ms-2'>

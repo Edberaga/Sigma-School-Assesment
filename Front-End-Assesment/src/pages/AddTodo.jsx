@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { Form, Container, Button } from 'react-bootstrap';
 import { TodoContext } from '../context/TodoContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AddTodo = () => {
   const [title, setTitle] = useState("");
@@ -18,7 +19,8 @@ const AddTodo = () => {
         ...todos, 
         { id: Date.now(), title, description, completed },
     ]);
-    navigate("/");
+    toast.success(`Succesfully Add ${title}`);
+    navigate("/note");
   }
 
   return (

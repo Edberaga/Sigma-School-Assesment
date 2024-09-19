@@ -1,7 +1,8 @@
 import { useContext, useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Card } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { toast} from 'react-toastify';
 
 const Login = () => {
   const [useremail, setUseremail] = useState("");
@@ -13,17 +14,19 @@ const Login = () => {
     const isCorrectUseremail = useremail === "edbertjonnathan@gmail.com";
     const isCorrectPassword = password === "123456";
     if(isCorrectUseremail && isCorrectPassword ) {
-        auth.setIsLoggedIn("1234")
+        auth.setIsLoggedIn("1234");
+        console.log(auth);
+        toast.success("Succesfully Logged In!");
         navigate("/note");
     } else {
-        alert("Invalid credentials!")
+        toast.error("Invalid Credentials!")
         setUseremail("")
         setPassword("")
     }
   }
 
   return (
-    <section>
+    <Card className='p-5'>
         <Form>
             <Form.Group className='mb-3'>
                 <Form.Label htmlFor='emailControl'>Email Address</Form.Label>
@@ -46,9 +49,14 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </Form.Group>
-            <Button className='my-2' variant='primary' onClick={handleLogin}>Login</Button>
+            <Button 
+            className='my-2 px-3' 
+            style={{backgroundColor: "rgb(245, 131, 77)", border: "0"}} 
+            onClick={handleLogin}>
+                Login
+            </Button>
         </Form>
-    </section>
+    </Card>
   )
 }
 

@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { Form, Container, Button } from 'react-bootstrap';
 import { TodoContext } from '../context/TodoContext';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const EditTodo = () => {
   const id = parseInt(useParams().id);
@@ -17,13 +18,14 @@ const EditTodo = () => {
   function updateTodo(event) {
     event.preventDefault();
     const updatedTodos = todos.map((todo) => {
-        if(todo.id === id) {
-            return { id, title, description, completed};
-        }
-        return todo;
+      if(todo.id === id) {
+        return { id, title, description, completed};
+      }
+      return todo;
     });
     setTodos(updatedTodos);
-    navigate('/');
+    toast.success(`Successfully updated ${title}`);
+    navigate('/note');
   }
 
   return (

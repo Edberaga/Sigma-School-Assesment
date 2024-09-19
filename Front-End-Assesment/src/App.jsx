@@ -13,12 +13,25 @@ import EditTodo from './pages/EditTodo';
 
 import useLocalStorage from 'use-local-storage';
 import { AuthContext } from './context/AuthContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RequireAuth from './components/RequireAuth';
+import RequireAuthPage from './pages/RequireAuthPage';
 
 function App() {
   const [todos, setTodos] = useLocalStorage("todos", []);
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem("isLoggedIn") || null;
+  });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      localStorage.setItem("isLoggedIn", isLoggedIn);
+    }
+  }, [isLoggedIn]);
+
+  if(!isLoggedIn) {
+    console.log("currently not logged in");
+  }
 
   return (
   <TodoContext.Provider value={{ todos, setTodos }}>
@@ -35,6 +48,7 @@ function App() {
           <Route path='todo/:id' element={<RequireAuth><EditTodo/></RequireAuth>} />
         </Route>
         <Route path='*' element={<ErrorPage/>} />
+        <Route path='/404' element={<RequireAuthPage />} />
       </Routes>
     </main>
     </BrowserRouter>
