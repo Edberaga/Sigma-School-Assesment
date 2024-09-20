@@ -7,9 +7,9 @@ const Header = () => {
 
   function logout() {
     localStorage.removeItem("isLoggedIn");
-    toast.success('Logged out successfully!');
     navigate('/login');
     window.location.reload(); // Reload the page.
+    toast.success('Logged out successfully!');
   }
 
   return (
