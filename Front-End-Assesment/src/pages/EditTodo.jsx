@@ -30,7 +30,7 @@ const EditTodo = () => {
 
   return (
   <Container>
-    <h1 className='mt-5'>Add Todo</h1>
+    <h1 className='mt-5'>Edit Todo `{title}`</h1>
     <Form onSubmit={ updateTodo }>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Title</Form.Label>
