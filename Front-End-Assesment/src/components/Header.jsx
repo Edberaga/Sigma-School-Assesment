@@ -1,6 +1,5 @@
 import { Container, Navbar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -9,7 +8,6 @@ const Header = () => {
     localStorage.removeItem("isLoggedIn");
     navigate('/login');
     window.location.reload(); // Reload the page.
-    toast.success('Logged out successfully!');
   }
 
   return (
